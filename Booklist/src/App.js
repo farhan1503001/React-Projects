@@ -66,25 +66,32 @@ class App extends Component{
    }
   render(){
     //Printing state in console
-    const Books=this.state.books.map((book,index)=>{
-      console.log(book)
-      return(
-         <Book 
-         bookname={book.bookname} 
-         writer={book.writer} 
-         delete_func={()=>this.delete_book(index)}
-         change_func={(e)=>this.change_input(e,index)}
-         key={book.id}
-         />
+    let Books="Books are Not Avaiable"
+    if(this.state.showbookstatus)
+    {
+      Books=this.state.books.map((book,index)=>{
+        console.log(book)
+        return(
+           <Book 
+           bookname={book.bookname} 
+           writer={book.writer} 
+           delete_func={()=>this.delete_book(index)}
+           change_func={(e)=>this.change_input(e,index)}
+           key={book.id}
+           />
+        );
+        
+      }
       );
       
-});
+    
+      }
     return(
       <div className="App">
       <h1 className='header'>Book List</h1>
       <button onClick={this.togglebook_status}>Toggle Books</button>
       <hr></hr>
-      {this.state.showbookstatus ? Books : "Books cannot be shown"}
+      {Books}
     </div>
     );
   }
