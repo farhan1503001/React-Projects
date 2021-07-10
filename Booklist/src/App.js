@@ -17,11 +17,14 @@ function App() {
 class App extends Component{
   state={
     books:[
-      {bookname:'1984',writer:'George Orwell'},
-      {bookname:'The Vinci Code',writer:"Dan Brown"},
-      {bookname:"Game of Thrones",writer:"George R.R Marin"}
-    ]
+      {id:1,bookname:'1984',writer:'George Orwell'},
+      {id:2,bookname:'The Vinci Code',writer:"Dan Brown"},
+      {id:3,bookname:"Game of Thrones",writer:"George R.R Marin"}
+    ],
+    //adding new state
+    showbookstatus:true,
   }
+  
   Changebookstate=(newbookname)=>{
     //this.setState()
     console.log('button has been clicke');
@@ -34,36 +37,54 @@ class App extends Component{
       ]
     })
   };
-  change_input=(event)=>{
+  
+  change_input=(event,index)=>{
     console.log('Text is changing');
+    console.log(index);
+    console.log("value"+event.target.value);
+    
+    var books=JSON.parse(JSON.stringify(this.state)).books
+    books[index].bookname=event.target.value
     this.setState({
-      books:[
-      {bookname: event.target.value,writer:'George Orwell'},
-      {bookname:'The Vinci Code',writer:"Dan Brown"},
-      {bookname:"Metamorphosis",writer:"Franz Kafka"}
-      ]
+      books:books
     })
-
+    
   }
+  togglebook_status=()=>{
+      this.setState(
+        {showbookstatus:!this.state.showbookstatus}
+      )
+  }
+   delete_book=(index)=>{
+     const book=this.state.books
+     book.splice(index,1)
+     this.setState(
+       {
+         books:book
+       }
+     )
+   }
   render(){
     //Printing state in console
-    console.log(this.state.books)
+    const Books=this.state.books.map((book,index)=>{
+      console.log(book)
+      return(
+         <Book 
+         bookname={book.bookname} 
+         writer={book.writer} 
+         delete_func={()=>this.delete_book(index)}
+         change_func={(e)=>this.change_input(e,index)}
+         key={book.id}
+         />
+      );
+      
+});
     return(
       <div className="App">
       <h1 className='header'>Book List</h1>
-      <button onClick={this.Changebookstate.bind(this,'Ninenteen 84')}>Change State</button>
-      <input type='text' onChange={this.change_input} />
+      <button onClick={this.togglebook_status}>Toggle Books</button>
       <hr></hr>
-      <Book name={this.state.books[0].bookname} 
-      writer={this.state.books[0].writer}
-      changer={this.Changebookstate.bind(this,'Nineteen 84')}
-      inputter={this.change_input}
-      />
-     
-      <Book name={this.state.books[1].bookname} 
-      writer={this.state.books[1].writer}/>
-      <Book name={this.state.books[2].bookname} 
-      writer={this.state.books[2].writer}/>
+      {this.state.showbookstatus ? Books : "Books cannot be shown"}
     </div>
     );
   }
