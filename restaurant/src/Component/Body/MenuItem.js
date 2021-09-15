@@ -1,6 +1,5 @@
 import React from "react";
 import {Card,CardImg,CardTitle,CardImgOverlay } from "reactstrap";
-import Cardstyle from "../../styles/Card.css"
 const MenuItem=(props)=>{
     console.log(props)
     return(
