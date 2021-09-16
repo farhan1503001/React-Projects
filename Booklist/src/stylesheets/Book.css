@@ -12,3 +12,7 @@
     color:white;
     border-radius: 5px auto;
 }
+.Book:hover{
+    color: orange;
+    cursor: pointer;
+}

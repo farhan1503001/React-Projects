@@ -11,7 +11,7 @@ let Person=(props)=>{
   );
 }
 export default Person;
-
+/*
 
 /*
 class Person extends Component{

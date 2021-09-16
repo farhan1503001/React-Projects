@@ -5,9 +5,13 @@ import Book from './components/representational/Book';
 import './stylesheets/Book.css'
 import Bookstore from './resources/books';
 import Main from './components/stateful/Maincomponent';
+import {BrowserRouter} from 'react-router-dom'
 function App(){
   return(
-    <Main />
+    <BrowserRouter>
+       <Main />
+    </BrowserRouter>
+ 
   );
 }
 

@@ -1,27 +1,23 @@
 import React from 'react';
 import Book from './Book'
+import {withRouter,Link} from 'react-router-dom'
 const Booklist=(props)=>{
-
+    console.log(props)
     return(
         props.books.map((book,index)=>{
-            console.log(book)
+            //console.log(book)
             return(
+            <Link to={"/book/"+book.id} key={book.id} style={{textDecoration:'none',color:'black'}}>
                <Book 
                bookname={book.bookname} 
                writer={book.writer} 
-               delete_func={()=>props.delete_book(index)}
-               change_func={(e)=>props.change_input(e,index)}
-               key={book.id}
+               bookselection={()=>props.selectionbook(book.id)}
                />
+               </Link>
             )
-            
           }
-          )
-
+        )
     )
-
-    
-
 }
 
-export default Booklist;
+export default withRouter(Booklist);

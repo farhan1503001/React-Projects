@@ -36,3 +36,27 @@
     transform: rotate(360deg);
   }
 }
+.nav-bar{
+  color:cadetblue;
+  margin:auto;
+}
+.nav-bar ul{
+  list-style: none;
+  margin: 0;
+  padding: 0px;
+  padding-top: 0px;
+}
+.nav-bar li{
+  display: inline-block;
+  margin: 20px;
+  text-shadow: navajowhite;
+}
+.nav-bar a{
+  text-decoration: none;
+  color:black;
+  text-shadow: saddlebrown;
+}
+
+.nav-bar :hover, a:active,a:active{
+  color:orange;
+}
