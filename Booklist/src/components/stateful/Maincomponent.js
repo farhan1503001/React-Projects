@@ -14,8 +14,6 @@ class Main extends Component{
         showbookstatus:true,
         selectedBook:null,
       }
-      
-
       //creating a function for handeling books
       bookSelectionHandler=bookId=>{
         const book=this.state.books.filter(element_book=>
