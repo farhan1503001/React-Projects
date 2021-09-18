@@ -1,24 +1,12 @@
-import React,{Component} from "react";
+import React,{Component,createRef} from "react";
 
 class Newbook extends Component{
     constructor(props){
         super(props);
-        this.state={
-            bookname:'',
-            writer:'',
-            description:'',
-        }
-        this.handleInputChange=this.handleInputChange.bind(this);
+        this.bookname=React.createRef();
+        this.writer=React.createRef();
+        this.description=React.createRef();
         this.handleSubmit=this.handleSubmit.bind(this);
-    }
-    handleInputChange=e=>{
-        const name=e.target.name;
-        const value=e.target.value;
-        this.setState(
-            {
-                [name]:value
-            }
-        )
     }
     handleSubmit=e=>{
         e.preventDefault()
@@ -37,18 +25,18 @@ class Newbook extends Component{
                 <br/>
                 <form onSubmit={this.handleSubmit}>
                 <input type='text' name='bookname' value={this.state.bookname}
-                onChange={this.handleInputChange}
+                ref={this.bookname}
                 ></input>
                 <br/>
                 <label>Writer</label>
                 <br/>
                 <input type='text' name='writer' value={this.state.writer}
-                onChange={this.handleInputChange}></input>
+                ref={this.writer}></input>
                 <br/>
                 <label>Description</label>
                 <br/>
                 <textarea name='description' value={this.state.description}
-                onChange={this.handleInputChange}
+                ref={this.description}
                 ></textarea>
                 <br/>
                 <input type='submit' name='submit'></input>
@@ -58,4 +46,3 @@ class Newbook extends Component{
     }
     
 }
-export default Newbook;
