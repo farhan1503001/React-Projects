@@ -26,15 +26,19 @@ const store=redux_file.createStore(rootReducer)
 //console.log(store);
 //seeing redux state
 console.log("Initial state: ",store.getState())
-
+store.subscribe(
+    ()=>{
+        console.log("Subscription coming ",store.getState())
+    }
+)
 //now performing action on redux
 store.dispatch({
     type:"INC_NUM",
     val:1
 })
-console.log(store.getState())
+//console.log(store.getState())
 store.dispatch({ 
     type:'ADD_NUM',
     value:33
 })
-console.log(store.getState())
+//console.log(store.getState())
