@@ -1,6 +1,5 @@
 import React,{Component} from "react";
 import {Form,Input,Button} from 'reactstrap'
-import {connect} from 'react-redux'
 class CommentForm extends Component{
     constructor(props){
         super(props)
