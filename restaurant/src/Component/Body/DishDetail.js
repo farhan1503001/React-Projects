@@ -1,5 +1,6 @@
 import React from "react";
 import {Card,CardBody,CardImg,CardText,CardTitle} from "reactstrap"
+import CommentForm from "./CommentForm";
 import Comments_viewer from "./Comments";
 const DishDetail=(props)=>{
     //console.log(props.dish.comments)
@@ -16,6 +17,8 @@ const DishDetail=(props)=>{
                         <hr/>
                          <CardText><b>Reviews:</b></CardText>
                         <Comments_viewer comments={props.comments_list}/>
+                        <hr/>
+                        <CommentForm dishId={props.dish.id} />
                     </CardBody>         
             </Card>
         </div>

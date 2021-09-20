@@ -6,7 +6,7 @@ import {BrowserRouter} from 'react-router-dom'
 import {Provider} from 'react-redux'
 import myStore from './redux/store'
 function App() {
-  console.log("Redux Store Observe",myStore.getState())
+  //console.log("Redux Store Observe",myStore.getState())
   return (
     <div className="App">
       <Provider store={myStore}>
