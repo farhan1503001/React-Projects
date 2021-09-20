@@ -4,6 +4,21 @@ import DishDetail from "./DishDetail"
 import {connect} from 'react-redux'
 import {CardColumns,Modal,ModalBody,ModalFooter,Button} from 'reactstrap'
 //now we will dispatch action as props
+const mapDispatchToProps=dispatch=>{
+    return{
+        addcomment:(dishId,rating,author,comment)=>dispatch(
+            {
+                type:'ADD_COMMENT',
+                payload:{
+                    dishId:dishId,
+                    rating:rating,
+                    author:author,
+                    comment:comment
+                }
+            }
+        )
+    }
+}
 const mapStateToProps = state=>{
     return{
         dishes:state.dishes,
@@ -43,7 +58,10 @@ class Menu extends Component{
             const comments_list=this.props.comments.filter(comment=>{
                 return comment.dishId===this.state.selected_dish_detail.id
             })
-            dish_detail_view=<DishDetail dish={this.state.selected_dish_detail} comments_list={comments_list} />
+            dish_detail_view=<DishDetail dish={this.state.selected_dish_detail} 
+            comments_list={comments_list} 
+            comment_addition={this.props.addcomment}
+            />
         }
         return(
             <div className='container'>
@@ -65,4 +83,4 @@ class Menu extends Component{
         );
     }
 }
-export default connect(mapStateToProps,null)(Menu);
+export default connect(mapStateToProps,mapDispatchToProps)(Menu);

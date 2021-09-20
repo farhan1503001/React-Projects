@@ -1,20 +1,6 @@
 import React,{Component} from "react";
 import {Form,Input,Button} from 'reactstrap'
 import {connect} from 'react-redux'
-const mapDispatchToProps=dispatch=>{
-    //dictionary of actions
-    return{
-        addcomment:(dishId,rating,author,comment)=>dispatch({
-            type:'ADD_COMMENT',
-            payload:{
-                dishId:dishId,
-                rating:rating,
-                author:author,
-                comment:comment
-            }
-        })
-    }
-}
 class CommentForm extends Component{
     constructor(props){
         super(props)
@@ -34,7 +20,7 @@ class CommentForm extends Component{
     handlePressSubmit=(e)=>{
         //console.log(this.state)
         //now for changing redux store
-        this.props.addcomment(this.props.dishId,this.state.rating,
+        this.props.comment_addition(this.props.dishId,this.state.rating,
             this.state.author,
             this.state.comment
             )
@@ -81,4 +67,4 @@ class CommentForm extends Component{
     }
 }
 //adding mapping in props
-export default connect(null,mapDispatchToProps)(CommentForm);
+export default CommentForm;

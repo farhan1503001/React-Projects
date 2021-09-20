@@ -18,7 +18,7 @@ const DishDetail=(props)=>{
                          <CardText><b>Reviews:</b></CardText>
                         <Comments_viewer comments={props.comments_list}/>
                         <hr/>
-                        <CommentForm dishId={props.dish.id} />
+                        <CommentForm dishId={props.dish.id} comment_addition={props.comment_addition} />
                     </CardBody>         
             </Card>
         </div>
