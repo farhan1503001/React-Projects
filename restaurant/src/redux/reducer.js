@@ -1,6 +1,7 @@
 import DISHES from '../datas/dishes'
 import COMMENTS from '../datas/comments'
 import {combineReducers} from 'redux'
+import * as actions from './actions'
 //initial state defination
 //initializing two reducer for two case
 const dishReducer=(dishState=DISHES,action)=>{
@@ -13,7 +14,7 @@ const dishReducer=(dishState=DISHES,action)=>{
 }
 const commentReducer=(commentsState=COMMENTS,action)=>{
     switch (action.type){
-        case 'ADD_COMMENT':
+        case actions.ADD_COMMENT:
              //console.log(action)
             let comment=action.payload;
             comment.id=commentsState.length //comments length

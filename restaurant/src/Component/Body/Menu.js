@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import MenuItem from "./MenuItem";
 import DishDetail from "./DishDetail"
 import {connect} from 'react-redux'
+import * as actions from '../../redux/actions'
 import {CardColumns,Modal,ModalBody,ModalFooter,Button} from 'reactstrap'
 //now we will dispatch action as props
 const mapDispatchToProps=dispatch=>{
     return{
         addcomment:(dishId,rating,author,comment)=>dispatch(
             {
-                type:'ADD_COMMENT',
+                type:actions.ADD_COMMENT,
                 payload:{
                     dishId:dishId,
                     rating:rating,
