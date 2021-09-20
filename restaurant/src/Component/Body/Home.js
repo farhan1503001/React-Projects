@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import Loading from "./Loading"
 const mapStateToProps = state=>{
     //console.log("From Store Redux ",state);
     return{
@@ -25,7 +26,7 @@ class Home extends Component{
         document.title="Ovi's Restaurant"
         return(
             <div>
-
+                <Loading></Loading>
             </div>
         );
     }

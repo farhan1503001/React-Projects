@@ -35,7 +35,7 @@ class CommentForm extends Component{
         e.preventDefault();
     }
     render(){
-        console.log(this.props)
+        //console.log(this.props)
         return(
             
             <Form>
