@@ -3,7 +3,7 @@ import MenuItem from "./MenuItem";
 import DishDetail from "./DishDetail"
 import {connect} from 'react-redux'
 import {CardColumns,Modal,ModalBody,ModalFooter,Button} from 'reactstrap'
-
+//now we will dispatch action as props
 const mapStateToProps = state=>{
     return{
         dishes:state.dishes,
@@ -65,4 +65,4 @@ class Menu extends Component{
         );
     }
 }
-export default connect(mapStateToProps)(Menu);
+export default connect(mapStateToProps,null)(Menu);
