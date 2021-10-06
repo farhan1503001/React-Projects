@@ -1,13 +1,22 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
 import {FormGroup,Label,Col,Button} from 'reactstrap'
-import {LocalForm,Control,Errors} from 'react-redux-form'
+import {Form,Control,Errors,actions} from 'react-redux-form'
+import {connect} from 'react-redux'
 const required=val=> val && val.length;
 const isNumber=val=> !isNaN(Number(val));
 const validEmail=val=>/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i.test(val);
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        resetFeedbackForm:()=>{
+            dispatch(actions.reset('feedback'))
+        }
+    }
+}
 class Contact extends Component{
     handleonSubmit=values=>{
         console.log(values)
+        this.props.resetFeedbackForm();
         
     }
     render(){
@@ -19,7 +28,7 @@ class Contact extends Component{
                         <h1>Send Us Your Feedbacks!</h1>
                     </div>
                     <div className='col-12'>
-                        <LocalForm onSubmit={values=>this.handleonSubmit(values)}>
+                        <Form model='feedback' onSubmit={values=>this.handleonSubmit(values)}>
                             <FormGroup row>
                                 <Label htmlFor='firstname' md={2}>First Name</Label>
                                 <Col>
@@ -162,7 +171,7 @@ class Contact extends Component{
                                     <Button type='submit' color='primary'>Send Feeback</Button>
                                 </Col>
                             </FormGroup>
-                        </LocalForm>
+                        </Form>
 
                     </div>
 
@@ -171,4 +180,4 @@ class Contact extends Component{
         );
     }
 }
-export default Contact;
+export default connect(null,mapDispatchToProps)(Contact);

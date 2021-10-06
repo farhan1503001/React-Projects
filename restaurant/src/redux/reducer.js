@@ -2,6 +2,8 @@
 import COMMENTS from '../datas/comments'
 import {combineReducers} from 'redux'
 import * as actions from './actionTypes'
+import {createInitialContactForm} from './forms'
+import {createForms} from 'react-redux-form'
 //initial state defination
 //initializing two reducer for two case
 const dishReducer=(dishState={isLoading:false,dishes:[]},action)=>{
@@ -40,5 +42,10 @@ const commentReducer=(commentsState=COMMENTS,action)=>{
 //the reducer function which we are using now combined
 export const reducer = combineReducers({
     'dishes':dishReducer,
-    'comments':commentReducer
+    'comments':commentReducer,
+    ...createForms(
+        {
+            feedback:createInitialContactForm
+        }
+    )
 })
