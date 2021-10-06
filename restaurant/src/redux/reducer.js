@@ -1,12 +1,24 @@
-import DISHES from '../datas/dishes'
+
 import COMMENTS from '../datas/comments'
 import {combineReducers} from 'redux'
-import * as actions from './actions'
+import * as actions from './actionTypes'
 //initial state defination
 //initializing two reducer for two case
-const dishReducer=(dishState=DISHES,action)=>{
+const dishReducer=(dishState={isLoading:false,dishes:[]},action)=>{
     //using switch
     switch (action.type){
+        case actions.DISHES_LOADING:
+            return{
+                ...dishState,
+                isLoading:true,
+                dishes:[]
+            }
+        case actions.LOAD_DISHES:
+            return{
+                ...dishState,
+                isLoading:false,
+                dishes:action.payload
+            }
         default:
             return dishState;
     }
