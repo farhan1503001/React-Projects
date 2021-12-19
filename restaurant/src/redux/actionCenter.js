@@ -1,5 +1,5 @@
 import * as actions from './actionTypes'
-import DISHES from '../datas/dishes.js'
+import axios from 'axios'
 export const addComment=(dishId,rating,author,comment)=>(
     {
         type:actions.ADD_COMMENT,
@@ -22,16 +22,18 @@ export const loadDishes=dishes=>(
 export const dishesLoading=()=>({
     type: actions.DISHES_LOADING
 })
+//comment fetcher
+
+export const fetchComments=()=>{
+
+}
 //combined asynchronous reducer handler
 export const fetchDishes=()=>{
     return dispatch=>{
         dispatch(dishesLoading());
-
-        
-         setTimeout(() => {
-            dispatch(loadDishes(DISHES))
-        },
-        2000);
+        axios.get("http://localhost:3001/dishes")
+        .then(response=>response.data)
+        .then(dishes=>dispatch(loadDishes(dishes)))
         //dispatch(loadDishes(DISHES))
         
         

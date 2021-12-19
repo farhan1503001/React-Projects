@@ -2,12 +2,13 @@ import React from "react";
 import {Card,CardBody,CardImg,CardText,CardTitle} from "reactstrap"
 import CommentForm from "./CommentForm";
 import Comments_viewer from "./Comments";
+import { base_url } from "../../redux/base_url";
 const DishDetail=(props)=>{
     //console.log(props.dish.comments)
     return(
         <div>
             <Card style={{margin:"10px"}}>
-                <CardImg top src={props.dish.image} alt={props.dish.name}></CardImg>
+                <CardImg top src={base_url+props.dish.image} alt={props.dish.name}></CardImg>
                     <CardBody style={{textAlign:"left"}}>
                         <CardTitle>{props.dish.name}</CardTitle>
                         <CardText><b>Description:</b></CardText>
