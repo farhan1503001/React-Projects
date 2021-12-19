@@ -1,21 +1,25 @@
 {
-    "dishes":[
-        {
-            "id":1,
-            "name":"Perry Perry Pasta",
-            "price":"3000"
-        },
-        {
-            "id":2,
-            "name":"Chicken Burger",
-            "price":"240"
-        }
-    ],
-
-    "comments":[
-        {
-            "id":1,
-            "review":"it is good"
-        }
-    ]
+  "dishes": [
+    {
+      "id": 1,
+      "name": "Perry Perry Pasta",
+      "price": "3000"
+    },
+    {
+      "name": "Italian Pasta",
+      "price": "450",
+      "id": 3
+    },
+    {
+      "name": "Italian Pasta",
+      "price": "450",
+      "id": 4
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "review": "it is good"
+    }
+  ]
 }
