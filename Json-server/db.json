@@ -1,0 +1,21 @@
+{
+    "dishes":[
+        {
+            "id":1,
+            "name":"Perry Perry Pasta",
+            "price":"3000"
+        },
+        {
+            "id":2,
+            "name":"Chicken Burger",
+            "price":"240"
+        }
+    ],
+
+    "comments":[
+        {
+            "id":1,
+            "review":"it is good"
+        }
+    ]
+}
