@@ -4,7 +4,8 @@ import DishDetail from "./DishDetail"
 import Loading from './Loading'
 import {connect} from 'react-redux'
 import {addComment,fetchDishes,fetchComments} from '../../redux/actionCenter'
-import {CardColumns,Modal,ModalBody,ModalFooter,Button} from 'reactstrap'
+import {CardColumns,Modal,ModalBody,ModalFooter,Button,Alert} from 'reactstrap'
+
 //now we will dispatch action as props
 const mapDispatchToProps=dispatch=>{
     return{
@@ -50,6 +51,11 @@ class Menu extends Component{
            return(
             <Loading />
            );
+        }
+        else if(this.props.dishes.errorMessage!=null){
+            return(
+            <Alert color='danger'>{this.props.dishes.errorMessage}</Alert>
+            );
         }
         else{
             const dishmenuitems=this.props.dishes.dishes.map(item=>{

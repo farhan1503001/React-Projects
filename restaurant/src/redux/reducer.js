@@ -6,20 +6,29 @@ import {createInitialContactForm} from './forms'
 import {actionTypes, createForms} from 'react-redux-form'
 //initial state defination
 //initializing two reducer for two case
-const dishReducer=(dishState={isLoading:false,dishes:[]},action)=>{
+const dishReducer=(dishState={isLoading:false,dishes:[],errorMessage:null},action)=>{
     //using switch
     switch (action.type){
         case actions.DISHES_LOADING:
             return{
                 ...dishState,
                 isLoading:true,
-                dishes:[]
+                dishes:[],
+                errorMessage:null
             }
         case actions.LOAD_DISHES:
             return{
                 ...dishState,
                 isLoading:false,
-                dishes:action.payload
+                dishes:action.payload,
+                errorMessage:null
+            }
+        case actions.DISH_LOADING_FAILED:
+            return{
+                ...dishState,
+                isLoading:false,
+                dishes:[],
+                errorMessage:action.payload
             }
         default:
             return dishState;

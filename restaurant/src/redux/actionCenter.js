@@ -32,6 +32,12 @@ export const loadDishes=dishes=>(
 export const dishesLoading=()=>({
     type: actions.DISHES_LOADING
 })
+export const dishLoadingFailed=(errorMessage)=>(
+    {
+        type:actions.DISH_LOADING_FAILED,
+        payload:errorMessage
+    }
+)
 //comment fetcher
 export const commentsLoading=()=>(
     {
@@ -60,7 +66,7 @@ export const fetchDishes=()=>{
         axios.get("http://localhost:3001/dishes")
         .then(response=>response.data)
         .then(dishes=>dispatch(loadDishes(dishes)))
-        //dispatch(loadDishes(DISHES))
+        .catch(error=>dispatch(dishLoadingFailed(error.message)))
         
         
     }
