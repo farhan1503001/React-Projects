@@ -54,7 +54,7 @@ class Menu extends Component{
         }
         else if(this.props.dishes.errorMessage!=null){
             return(
-            <Alert color='danger'>{this.props.dishes.errorMessage}</Alert>
+            <Alert color='danger' isOpen={true}>{this.props.dishes.errorMessage}</Alert>
             );
         }
         else{
