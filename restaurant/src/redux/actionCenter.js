@@ -1,14 +1,24 @@
 import * as actions from './actionTypes'
 import axios from 'axios'
-export const addComment=(dishId,rating,author,comment)=>(
+import { base_url } from './base_url';
+export const addComment=(dishId,rating,author,comment)=>dispatch=>{ const newcomment={
+        dishId:dishId,
+        rating:rating,
+        author:author,
+        comment:comment
+    };
+    newcomment.date=new Date().toISOString();
+    axios.post(base_url+'comments',newcomment)
+    .then(response=>response.data)
+    .then(comment=>dispatch(commentConcat(comment)))
+
+}
+
+//this will post comment update on redux store
+export const commentConcat=comment=>(
     {
         type:actions.ADD_COMMENT,
-        payload:{
-            dishId:dishId,
-            rating:rating,
-            author:author,
-            comment:comment
-        }
+        payload:comment
     }
 )
 //now adding dishes loader
