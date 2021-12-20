@@ -3,13 +3,15 @@ import MenuItem from "./MenuItem";
 import DishDetail from "./DishDetail"
 import Loading from './Loading'
 import {connect} from 'react-redux'
-import {addComment,fetchDishes} from '../../redux/actionCenter'
+import {addComment,fetchDishes,fetchComments} from '../../redux/actionCenter'
 import {CardColumns,Modal,ModalBody,ModalFooter,Button} from 'reactstrap'
 //now we will dispatch action as props
 const mapDispatchToProps=dispatch=>{
     return{
         addcomment:(dishId,rating,author,comment)=>dispatch(addComment(dishId,rating,author,comment)),
-        fetchDishes:()=>dispatch(fetchDishes())
+        fetchDishes:()=>dispatch(fetchDishes()),
+        fetchComments:()=>dispatch(fetchComments())
+        
     }
 }
 const mapStateToProps = state=>{
@@ -39,6 +41,7 @@ class Menu extends Component{
     }
     componentDidMount(){ 
         this.props.fetchDishes();
+        this.props.fetchComments();
     }
     render(){
         //console.log(this.state.dishes)
@@ -58,12 +61,13 @@ class Menu extends Component{
             let dish_detail_view=null;
             if(this.state.selected_dish_detail!=null){
                 //will add comments from comments after filtering out
-                const comments_list=this.props.comments.filter(comment=>{
+                const comments_list=this.props.comments.comments.filter(comment=>{
                     return comment.dishId===this.state.selected_dish_detail.id
                 })
                 dish_detail_view=<DishDetail dish={this.state.selected_dish_detail} 
                 comments_list={comments_list} 
                 comment_addition={this.props.addcomment}
+                commentsIsLoading={this.props.comments.isLoading}
                 />
             }
             return(

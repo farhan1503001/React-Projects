@@ -1,6 +1,13 @@
 import React from "react";
 import dateFormat from 'dateformat'
+import Loading from "./Loading";
 const Comments_viewer=(props)=>{
+    if(props.commentIsLoading){
+        return(
+            <Loading />
+        );
+    }
+    else{
     return(
         props.comments.map(comment=>{
             return(
@@ -13,6 +20,7 @@ const Comments_viewer=(props)=>{
             );
         })
     );
+    }
     
 }
 export default Comments_viewer;

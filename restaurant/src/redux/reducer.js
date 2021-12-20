@@ -1,9 +1,9 @@
 
-import COMMENTS from '../datas/comments'
+//import COMMENTS from '../datas/comments'
 import {combineReducers} from 'redux'
 import * as actions from './actionTypes'
 import {createInitialContactForm} from './forms'
-import {createForms} from 'react-redux-form'
+import {actionTypes, createForms} from 'react-redux-form'
 //initial state defination
 //initializing two reducer for two case
 const dishReducer=(dishState={isLoading:false,dishes:[]},action)=>{
@@ -26,8 +26,20 @@ const dishReducer=(dishState={isLoading:false,dishes:[]},action)=>{
     }
    
 }
-const commentReducer=(commentsState=COMMENTS,action)=>{
+const commentReducer=(commentsState={isLoading:false,comments:[]},action)=>{
     switch (action.type){
+        case actions.COMMENT_LOADING:
+            return{
+                ...commentsState,
+                isLoading:true,
+                comments:[]
+            }
+        case actions.LOAD_COMMENTS:
+            return{
+                ...commentsState,
+                isLoading:false,
+                comments:action.payload
+            }
         case actions.ADD_COMMENT:
              //console.log(action)
             let comment=action.payload;

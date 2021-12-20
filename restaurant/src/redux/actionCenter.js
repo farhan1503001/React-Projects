@@ -23,8 +23,24 @@ export const dishesLoading=()=>({
     type: actions.DISHES_LOADING
 })
 //comment fetcher
-
+export const commentsLoading=()=>(
+    {
+        type:actions.COMMENT_LOADING
+    }
+)
+export const loadComments=(comments)=>(
+    {
+        type:actions.LOAD_COMMENTS,
+        payload:comments
+    }
+)
 export const fetchComments=()=>{
+    return dispatch=>{
+        dispatch(commentsLoading());
+        axios.get("http://localhost:3001/comments")
+        .then(response=>response.data)
+        .then(comments=>dispatch(loadComments(comments)))
+    }
 
 }
 //combined asynchronous reducer handler
