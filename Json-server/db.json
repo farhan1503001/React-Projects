@@ -29318,5 +29318,19 @@
       "date": "2021-12-20T07:58:41.268Z",
       "id": 138
     }
+  ],
+  "feedback": [
+    {
+      "firstName": "",
+      "lastName": "",
+      "telnum": "0192225353",
+      "email": "farhanruet1503001@gmail.com",
+      "agree": true,
+      "contactType": "Email",
+      "message": "Loved Your Product.",
+      "firstname": "Farhan",
+      "lastname": "Israk",
+      "id": 1
+    }
   ]
 }

@@ -1,8 +1,11 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
-import {FormGroup,Label,Col,Button} from 'reactstrap'
+import {FormGroup,Label,Col,Button,Alert} from 'reactstrap'
 import {Form,Control,Errors,actions} from 'react-redux-form'
 import {connect} from 'react-redux'
+import axios from 'axios'
+import {base_url} from '../../redux/base_url'
+
 const required=val=> val && val.length;
 const isNumber=val=> !isNaN(Number(val));
 const validEmail=val=>/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i.test(val);
@@ -14,8 +17,56 @@ const mapDispatchToProps=(dispatch)=>{
     }
 }
 class Contact extends Component{
+    state={
+        alertstate:false,
+        alerttype:null,
+        alerttext:null
+    }
     handleonSubmit=values=>{
-        console.log(values)
+        //console.log(values)
+        axios.post(base_url+"feedback",values)
+        .then(response=>response.status)
+        .then(status=>{
+            if(status===201){
+                //submittion successful
+                this.setState(
+                    {
+                        alertstate:true,
+                        alerttext:"Submitted Successfully",
+                        alerttype:"success"
+                    }
+                )
+                //after two second all will be gone
+                setTimeout(()=>{
+                    this.setState(
+                        {
+                            alertstate:false,
+                            alerttext:null,
+                            alerttype:null
+                        }
+                    )
+                },2000)
+            }
+
+        })///error hole ki korbo ta likhtechi
+        .catch(error=>{
+            this.setState(
+                {
+                    alertstate:true,
+                    alerttext:error.message,
+                    alerttype:"danger"
+                }
+            )
+            setTimeout(()=>{
+                this.setState(
+                    {
+                        alertstate:false,
+                        alerttext:null,
+                        alerttype:null
+                    }
+                )
+            })
+        })
         this.props.resetFeedbackForm();
         
     }
@@ -26,6 +77,7 @@ class Contact extends Component{
                 <div className='row row-contents'>
                     <div className='col-12'>
                         <h1>Send Us Your Feedbacks!</h1>
+                    <Alert isOpen={this.state.alertstate} color={this.state.alerttype}>{this.state.alerttext}</Alert>
                     </div>
                     <div className='col-12'>
                         <Form model='feedback' onSubmit={values=>this.handleonSubmit(values)}>
